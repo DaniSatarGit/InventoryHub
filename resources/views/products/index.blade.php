@@ -113,12 +113,21 @@
 
                             </a>
 
+                        <form action="{{ route('products.destroy', $product->id) }}"
+                            method="POST"
+                            onsubmit="return confirm('Delete this product?')">
+
+                            @csrf
+                            @method('DELETE')
+
                             <button
                                 class="bg-rose-500 hover:bg-rose-600 transition text-black px-3 py-1 rounded-lg text-sm shadow">
 
                                 Delete
 
                             </button>
+
+                        </form>
 
                         </td>
 

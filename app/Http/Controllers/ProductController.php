@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -9,7 +10,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::where('user_id', Auth::id())
+                        ->latest()
+                        ->get();
 
         return view('products.index', compact('products'));
     }
@@ -22,6 +25,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         Product::create([
+
+            'user_id' => Auth::id(),
 
             'name' => $request->name,
 
@@ -57,4 +62,11 @@ class ProductController extends Controller
 
     return redirect()->route('products.index');
     }
+
+    public function destroy(Product $product)
+{
+    $product->delete();
+
+    return redirect()->route('products.index');
+}
 }
