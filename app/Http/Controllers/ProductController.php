@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\StockLog;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -69,4 +69,46 @@ class ProductController extends Controller
 
     return redirect()->route('products.index');
 }
+
+    public function stockIn(Request $request, Product $product)
+    {
+        $product->increment('quantity', $request->quantity);
+
+        StockLog::create([
+
+            'product_id' => $product->id,
+
+            'user_id' => Auth::id(),
+
+            'type' => 'in',
+
+            'quantity' => $request->quantity,
+
+            'note' => $request->note
+
+        ]);
+
+        return redirect()->route('products.index');
+    }
+
+    public function stockOut(Request $request, Product $product)
+    {
+        $product->decrement('quantity', $request->quantity);
+
+        StockLog::create([
+
+            'product_id' => $product->id,
+
+            'user_id' => Auth::id(),
+
+            'type' => 'out',
+
+            'quantity' => $request->quantity,
+
+            'note' => $request->note
+
+        ]);
+
+        return redirect()->route('products.index');
+    }
 }

@@ -20,4 +20,12 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('products', ProductController::class);
 
+Route::post('/products/{product}/stock-in',
+    [ProductController::class, 'stockIn'])
+    ->name('products.stock.in');
+
+Route::post('/products/{product}/stock-out',
+    [ProductController::class, 'stockOut'])
+    ->name('products.stock.out');
+
 require __DIR__.'/auth.php';

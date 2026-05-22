@@ -106,6 +106,42 @@
                         <!-- Actions -->
                         <td class="flex gap-2 py-4">
 
+<form action="{{ route('products.stock.in', $product->id) }}"
+      method="POST">
+
+    @csrf
+
+    <input type="hidden"
+           name="quantity"
+           value="1">
+
+    <button
+        class="bg-green-500 hover:bg-green-600 transition text-black px-3 py-1 rounded-lg text-sm shadow">
+
+        + Stock
+
+    </button>
+
+</form>
+
+<form action="{{ route('products.stock.out', $product->id) }}"
+      method="POST">
+
+    @csrf
+
+    <input type="hidden"
+           name="quantity"
+           value="1">
+
+    <button
+        class="bg-orange-500 hover:bg-orange-600 transition text-black px-3 py-1 rounded-lg text-sm shadow">
+
+        - Stock
+
+    </button>
+
+</form>
+
                             <a href="{{ route('products.edit', $product->id) }}"
                             class="bg-amber-500 hover:bg-amber-600 transition text-black px-3 py-1 rounded-lg text-sm shadow">
 
