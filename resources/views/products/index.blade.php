@@ -107,18 +107,20 @@
                         <td class="flex gap-2 py-4">
 
                             <a href="#"
-                               class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm">
+                            class="bg-amber-500 hover:bg-amber-600 transition text-black px-3 py-1 rounded-lg text-sm shadow">
 
                                 Edit
 
                             </a>
 
                             <button
-                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm">
+                                class="bg-rose-500 hover:bg-rose-600 transition text-black px-3 py-1 rounded-lg text-sm shadow">
 
                                 Delete
 
                             </button>
+
+                        </td>
 
                         </td>
 
