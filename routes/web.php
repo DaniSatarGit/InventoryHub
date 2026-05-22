@@ -3,14 +3,40 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Models\StockLog;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+    $totalProducts = Product::where('user_id', Auth::id())
+                            ->count();
+
+    $lowStocks = Product::where('user_id', Auth::id())
+                        ->where('quantity', '<', 5)
+                        ->latest()
+                        ->get();
+
+    $recentActivities = StockLog::where('user_id', Auth::id())
+                                ->latest()
+                                ->take(5)
+                                ->get();
+
+    return view('dashboard', compact(
+
+        'totalProducts',
+
+        'lowStocks',
+
+        'recentActivities'
+
+    ));
+
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
