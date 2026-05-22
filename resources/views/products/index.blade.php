@@ -106,7 +106,7 @@
                         <!-- Actions -->
                         <td class="flex gap-2 py-4">
 
-                            <a href="#"
+                            <a href="{{ route('products.edit', $product->id) }}"
                             class="bg-amber-500 hover:bg-amber-600 transition text-black px-3 py-1 rounded-lg text-sm shadow">
 
                                 Edit
