@@ -35,9 +35,11 @@ Inventory Hub is a streamlined inventory management solution designed for indivi
 
 ## Screenshots
 
-> Add screenshots here
-
-![Inventory Hub Screenshot](Screenshot/screenshot.png)
+<!-- Replace the filenames below with the actual names of your files -->
+![Dashboard View](Screenshot/dashboard.png)
+![Product Management](Screenshot/products.png)
+![Stock In/Out](Screenshot/stock.png)
+![Login or Register](Screenshot/auth.png)
 
 ## Getting Started
 
